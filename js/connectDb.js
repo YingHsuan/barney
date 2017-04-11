@@ -78,6 +78,8 @@ function exportToExcel() {
         { header: '獎勵內容結果'},
         { header: '對象'},
         { header: '目前結果'},
+        { header: '進度'},
+        { header: '差額'},
     ];
     var currentRow = 2;
     for (i=0; i< list.length; i++) {
@@ -96,6 +98,7 @@ function exportToExcel() {
         worksheet.mergeCells("C"+currentRow+":C"+targetRow);
         worksheet.mergeCells("D"+currentRow+":D"+targetRow);
         worksheet.mergeCells("E"+currentRow+":E"+targetRow);
+        worksheet.mergeCells("H"+currentRow+":H"+targetRow);
         worksheet.mergeCells("I"+currentRow+":I"+targetRow);
         row.getCell(1).value = list[i].providerName;
         row.getCell(2).value = list[i].code;
@@ -103,20 +106,23 @@ function exportToExcel() {
         row.getCell(4).value = list[i].endDate;
         row.getCell(5).value = list[i].productCode;
         row.getCell(8).value = list[i].target;
+        row.getCell(9).value = result;
         for (k=0; k<list[i].award.length; k++) {
             var row = worksheet.getRow(currentRow);
             row.getCell(6).value = list[i].award[k].name;
             row.getCell(7).value = list[i].award[k].resultDesc;
-            if (result >= list[i].award[k].value && result < list[i].award[k+1].value) {
-                row.getCell(9).value = result;
+            if (result >= list[i].award[k].value) {
+                row.getCell(10).value = "V";
+            } else {
+                row.getCell(11).value = list[i].award[k].value-result;
             }
             currentRow += 1;
         }
     }
     workbook.xlsx.writeFile('report.xlsx')
         .then( function() {
-            cmd.run('zip --password ls999 report.zip report.xlsx');
-            mailTo();
+            // cmd.run('zip --password ls999 report.zip report.xlsx');
+            // mailTo();
         });
 }
 targetConnect.connect();

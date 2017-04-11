@@ -9,21 +9,25 @@ item = {
   award: [
     {
       name: 'APE>=70,000,000',
+      value: 70000000,
       resultDesc: 'FYC*7%',
       result: 0.07,
     },
     {
       name: 'APE>=100,000,000',
+      value: 100000000,
       resultDesc: 'FYC*9%',
       result: 0.09,
     },
     {
       name: 'APE>=150,000,000',
+      value: 150000000,
       resultDesc: 'FYC*12%',
       result: 0.12,
     },
     {
       name: 'APE>=180,000,000',
+      value: 180000000,
       resultDesc: 'FYC*13%',
       result: 0.13,
     },
