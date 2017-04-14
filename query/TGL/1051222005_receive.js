@@ -1,5 +1,6 @@
 module.exports = (`
-SELECT SUM(RFYP*APERate) as result
+SELECT case when SUM(RFYP*APERate) is null then 0 else SUM(RFYP*APERate) end as result,
+       case when SUM(RFYP*APERate) is null then 0 else SUM(RFYP*APERate) end as countValue
 FROM (
         SELECT
                 CRCRate*RFYP as RFYP
@@ -43,8 +44,8 @@ FROM (
                 V_LS_Ins_Content
         WHERE
                 SupCode = '300000737'
-        AND Receive_Date BETWEEN '2016-01-01'
-        AND '2016-06-30'
+        AND Receive_Date BETWEEN '2017-01-01'
+        AND '2017-06-30'
         AND Audit = 1
         AND Void != 1
 ) a

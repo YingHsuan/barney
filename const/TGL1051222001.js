@@ -1,4 +1,5 @@
-var query = require('../query/TGL/1051222001.js');
+var query_receive = require('../query/TGL/1051222001_receive.js');
+var query_feat = require('../query/TGL/1051222001_feat.js');
 
 item = {
   providerName: '全球人壽',
@@ -33,6 +34,9 @@ item = {
     },
   ],
   target: '公司',
-  query: query,
+  query: {
+    receive: query_receive,
+    feat: query_feat,
+  },
 }
 module.exports = item
